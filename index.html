@@ -335,10 +335,21 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeInRight 1s ease;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
             font-family: 'Bebas Neue', sans-serif;
             letter-spacing: 2px;
         }
+
+        
+        /* تعريف الخطوط */
+        .arabic-text {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .english-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-style: italic;
+        }
+
         
         .about-content p {
             font-size: 1.2rem;
@@ -1329,6 +1340,8 @@
             cursorDot.style.left = e.clientX + 'px';
             cursorDot.style.top = e.clientY + 'px';
         });
+
+        
         
         document.querySelectorAll('a, button, .social-card, .project-card, .discord-server').forEach(element => {
             element.addEventListener('mouseenter', () => {
@@ -1390,6 +1403,19 @@
                     if(index === 1) span.style.opacity = '1';
                     if(index === 2) span.style.transform = 'rotate(0) translate(0)';
                 });
+            });
+        });
+        
+                document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, a');
+            
+            elements.forEach(el => {
+                // تحقق إذا كان النص يحتوي على حروف عربية
+                if (/[\u0600-\u06FF]/.test(el.textContent)) {
+                    el.classList.add('arabic-text');
+                } else {
+                    el.classList.add('english-text');
+                }
             });
         });
         </script>
