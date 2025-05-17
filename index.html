@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sabr - صابر</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="https://i.postimg.cc/jjmMD8hC/20250511-140455.png" type="image/x-icon">
     <link rel="shortcut icon" href="https://i.postimg.cc/jjmMD8hC/20250511-140455.png" type="image/x-icon">
     <style>
         :root {
             --primary-bg: #0f0f0f;
+            --secondary-bg: #151515;
             --secondary-color: #C9B25C;
             --accent-color: #f1d76b;
             --text-color: #f5f5f5;
+            --text-muted: #a0a0a0;
             --gradient-bg: linear-gradient(135deg, rgba(201, 178, 92, 0.15), rgba(23, 23, 23, 0.8));
-            --card-bg: rgba(31, 31, 31, 1);
+            --card-bg: rgba(25, 25, 25, 0.8);
+            --card-border: 1px solid rgba(255, 255, 255, 0.05);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --transition-fast: 0.3s ease;
+            --transition-medium: 0.5s ease;
+            --transition-slow: 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
         
         * {
@@ -25,181 +31,157 @@
             box-sizing: border-box;
         }
         
+        /* التعديلات على الخلفية الرئيسية */
         body {
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Tajawal', 'Poppins', sans-serif;
             color: var(--text-color);
             overflow-x: hidden;
-            background-color: var(--primary-bg);
-            display: flex;
-            flex-direction: column;
             min-height: 100vh;
-        }
-        
-        /* خط Bebas Neue بإيطاليك */
-        .bebas-italic {
-            font-family: 'Bebas Neue', sans-serif;
-            font-style: italic;
-        }
-        
-        /* الخلفية المتحركة */
-        .hero-section {
             position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            perspective: 1000px;
         }
         
-        .hero-bg {
-            position: absolute;
+        .main-background {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://cdn.discordapp.com/attachments/1276639014522196175/1370795760169386044/51_20250510164133.png');
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-            animation: bgPan 20s linear infinite;
-        }
-        
-        @keyframes bgPan {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(1deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 15, 15, 0.5);
             z-index: -1;
+            background: url('https://i.postimg.cc/xCXV6yF2/51-20250509184644.png') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
         }
-        
-        .hero-content {
-            max-width: 800px;
-            padding: 0 20px;
-            transform-style: preserve-3d;
-        }
-        
-        .hero-title {
-            font-size: 4.5rem;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px;
-            animation: titleGlow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes titleGlow {
-            from {
-                text-shadow: 0 0 10px var(--secondary-color),
-                            0 0 20px var(--secondary-color),
-                            0 0 30px var(--secondary-color);
-            }
-            to {
-                text-shadow: 0 0 20px var(--accent-color),
-                            0 0 40px var(--accent-color),
-                            0 0 60px var(--accent-color);
-            }
-        }
-        
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        
-        .hero-btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background: var(--secondary-color);
-            color: var(--primary-bg);
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(201, 178, 92, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(201, 178, 92, 0.6);
-            background: var(--accent-color);
-        }
-        
-        .hero-btn::before {
+
+       .main-background::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .hero-btn:hover::before {
-            left: 100%;
+            background: rgba(15, 15, 15, 0.7); /* تعديل الشفافية حسب الحاجة */
         }
 
-        /* تنسيق زر القائمة */
+        .main-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, 
+                    rgba(201, 178, 92, 0.15) 0%, 
+                    transparent 30%),
+                radial-gradient(circle at 80% 70%, 
+                    rgba(201, 178, 92, 0.15) 0%, 
+                    transparent 30%);
+            z-index: 2;
+            animation: gradientPulse 15s ease infinite alternate;
+        }
+
+        @keyframes gradientPulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .main-background {
+                background-attachment: scroll;
+                background-size: cover;
+            }
+            
+            .main-background::after {
+                background: 
+                    radial-gradient(circle at 20% 30%, 
+                        rgba(201, 178, 92, 0.1) 0%, 
+                        transparent 40%),
+                    radial-gradient(circle at 80% 70%, 
+                        rgba(201, 178, 92, 0.1) 0%, 
+                        transparent 40%);
+            }
+        }
+        
+        /* إضافة هذا الجزء لضمان ظهور المحتوى فوق الخلفية */
+        section, footer {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        /* Typography */
+        .english-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .arabic-text {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: var(--primary-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+        
+        /* Navigation */
         .menu-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: #C9B25C;
+            top: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: rgba(25, 25, 25, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all var(--transition-fast);
         }
 
         .menu-toggle:hover {
-            transform: rotate(90deg) scale(1.1);
-            box-shadow: 0 0 20px var(--secondary-color);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(201, 178, 92, 0.3);
         }
 
         .hamburger {
-            width: 30px;
-            height: 20px;
+            width: 24px;
+            height: 18px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: var(--transition-fast);
         }
 
         .hamburger span {
             display: block;
             width: 100%;
-            height: 3px;
-            background: #0f0f0f;
-            border-radius: 3px;
-            transition: all 0.3s ease;
+            height: 2px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+            transition: var(--transition-fast);
         }
         
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+            transform: rotate(45deg) translate(5px, 6px);
         }
 
         .hamburger.active span:nth-child(2) {
@@ -207,51 +189,70 @@
         }
 
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -8px);
+            transform: rotate(-45deg) translate(5px, -6px);
         }
         
-        /* تنسيق القائمة المنزلقة */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: -300px;
-            width: 250px;
+            width: 300px;
             height: 100vh;
-            background: #C9B25C;
-            padding: 80px 20px 20px;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 120px 40px 40px;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+            transition: all var(--transition-medium);
             z-index: 999;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .mobile-menu a {
-            color: #0f0f0f;
+            color: var(--text-color);
             text-decoration: none;
-            font-size: 18px;
-            padding: 10px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            text-align: center;
-            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 15px 20px;
+            border-radius: 10px;
+            transition: all var(--transition-fast);
+            text-align: right;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .mobile-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--secondary-color);
+            transition: var(--transition-fast);
+            z-index: -1;
         }
 
         .mobile-menu a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateX(-10px);
+            color: var(--primary-bg);
+            transform: translateX(-5px);
         }
 
-        /* عند تفعيل القائمة */
+        .mobile-menu a:hover::before {
+            width: 100%;
+        }
+
         .mobile-menu.active {
             right: 0;
         }
         
-        /* الأقسام العامة */
+        /* Sections */
         section {
             min-height: 100vh;
-            padding: 120px 10%;
+            padding: 120px 8%;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -267,12 +268,12 @@
         
         .section-title {
             font-size: 3.5rem;
-            margin-bottom: 50px;
+            margin-bottom: 70px;
             color: var(--secondary-color);
             position: relative;
             display: inline-block;
-            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
-            font-family: 'Bebas Neue', sans-serif;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 800;
             letter-spacing: 2px;
             text-align: center;
             width: 100%;
@@ -281,31 +282,36 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            right: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, var(--secondary-color), transparent);
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
         }
         
-        /* قسم التعريف */
+        /* About Section - New Hero */
         #about {
-            background-image: url('https://i.postimg.cc/xCXV6yF2/51-20250509184644.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
         
         .about-container {
             display: flex;
             width: 100%;
             max-width: 1200px;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
-        .about-logo {
+        /* Logo Styles - Mobile Friendly */
+        .logo-container {
             flex: 1;
             display: flex;
             justify-content: center;
@@ -314,15 +320,88 @@
             position: relative;
         }
         
-        .about-logo img {
-            max-width: 100%;
+        .logo-wrapper {
+            width: 100%;
+            position: relative;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            transition: transform 0.5s ease;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
         }
         
-        .about-logo:hover img {
-            transform: scale(1.05) rotate(2deg);
+        .logo-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            filter: brightness(1.05);
+        }
+        
+        .logo-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 60px 10px rgba(201, 178, 92, 0.3);
+            animation: pulse 4s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        
+        .logo-shine {
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(
+                135deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.3;
+                box-shadow: 0 0 40px 5px rgba(201, 178, 92, 0.3);
+            }
+            100% {
+                opacity: 0.6;
+                box-shadow: 0 0 70px 15px rgba(201, 178, 92, 0.5);
+            }
+        }
+        
+        @keyframes shine {
+            0% {
+                top: -100%;
+                left: -100%;
+            }
+            20% {
+                top: 100%;
+                left: 100%;
+            }
+            100% {
+                top: 100%;
+                left: 100%;
+            }
         }
         
         .about-content {
@@ -338,188 +417,233 @@
             animation: fadeInRight 1s ease;
             letter-spacing: 2px;
             text-shadow: none;
-            font-family: 'Tajawal', sans-serif; /* الخط الثابت للعربية */
+            font-weight: 800;
         }
-
-        
-        /* تعريف الخطوط */
-        .arabic-text {
-            font-family: 'Tajawal', sans-serif;
-        }
-        
-        .english-text {
-            font-family: 'Bebas Neue', sans-serif;
-            font-style: italic;
-        }
-
         
         .about-content p {
             font-size: 1.2rem;
             line-height: 1.8;
             margin-bottom: 30px;
             animation: fadeInUp 1.2s ease;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            color: var(--text-muted);
         }
         
-        /* قسم الحسابات */
+        .about-cta {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--secondary-color);
+            color: var(--primary-bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all var(--transition-medium);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(201, 178, 92, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin-top: 20px;
+        }
+        
+        .about-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(201, 178, 92, 0.5);
+        }
+        
+        .about-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            z-index: -1;
+            transition: var(--transition-medium);
+            opacity: 0;
+        }
+        
+        .about-cta:hover::before {
+            opacity: 1;
+        }
+        
+        /* Social Section */
         #social {
-            background-image: url('https://i.postimg.cc/xCXV6yF2/51-20250509184644.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            position: relative;
         }
         
         .social-container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .social-description {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 70px;
             max-width: 800px;
-            margin: 0 auto 60px;
+            margin: 0 auto 70px;
         }
         
         .social-description p {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             line-height: 1.8;
             animation: fadeInUp 1s ease;
+            color: var(--text-muted);
+            font-weight: 500;
         }
         
         .social-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
             margin-top: 50px;
         }
         
         .social-card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            transition: all 0.5s ease;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-medium);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(201, 178, 92, 0.2);
-            padding: 30px;
+            border: var(--card-border);
+            padding: 40px 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             position: relative;
-            transform-style: preserve-3d;
+            height: 100%;
         }
         
         .social-card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg,
-                var(--secondary-color),
-                var(--accent-color),
-                var(--secondary-color));
-            z-index: -1;
-            animation: borderRotate 3s linear infinite;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 15px;
-        }
-        
-        @keyframes borderRotate {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        
-        .social-card:hover::before {
-            opacity: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            transition: var(--transition-medium);
         }
         
         .social-card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 0 20px 40px rgba(201, 178, 92, 0.25);
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(201, 178, 92, 0.2);
+        }
+        
+        .social-card:hover::before {
+            height: 10px;
         }
         
         .social-icon-large {
             width: 100px;
             height: 100px;
-            border-radius: 50%;
+            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 40px;
             color: var(--primary-bg);
             background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-            box-shadow: 0 10px 20px rgba(201, 178, 92, 0.3);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
+            box-shadow: 0 15px 30px rgba(201, 178, 92, 0.3);
+            margin-bottom: 30px;
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-icon-large::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            transition: var(--transition-medium);
+            opacity: 0;
         }
         
         .social-card:hover .social-icon-large {
-            transform: rotate(360deg) scale(1.1);
+            transform: scale(1.1);
+            border-radius: 50%;
+        }
+        
+        .social-card:hover .social-icon-large::after {
+            animation: shine 1.5s ease;
+        }
+        
+        @keyframes shine {
+            0% { left: -50%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { left: 150%; opacity: 0; }
         }
         
         .social-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: var(--secondary-color);
-            font-family: 'Bebas Neue', sans-serif;
+            font-weight: 700;
             letter-spacing: 1px;
         }
         
         .social-card p {
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            font-size: 1.1rem;
         }
         
         .follow-btn {
             display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-            color: var(--primary-bg);
+            padding: 14px 35px;
+            background: transparent;
+            color: var(--secondary-color);
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: 700;
-            transition: all 0.3s ease;
-            border: none;
+            transition: all var(--transition-fast);
             cursor: pointer;
             font-size: 1.1rem;
             margin-top: auto;
             position: relative;
             overflow: hidden;
-        }
-        
-        .follow-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(201, 178, 92, 0.4);
+            border: 2px solid var(--secondary-color);
+            z-index: 1;
         }
         
         .follow-btn::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
+            left: 0;
+            width: 0;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
+            background: var(--secondary-color);
+            transition: var(--transition-fast);
+            z-index: -1;
+        }
+        
+        .follow-btn:hover {
+            color: var(--primary-bg);
         }
         
         .follow-btn:hover::before {
-            left: 100%;
+            width: 100%;
         }
         
-        /* قسم Discord */
+        /* Discord Section */
         #discord {
-             background-image: url('https://i.postimg.cc/xCXV6yF2/51-20250509184644.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            position: relative;
         }
         
         .discord-container {
@@ -528,25 +652,21 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .discord-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            margin-top: 40px;
-            width: 100%;
+            position: relative;
+            z-index: 1;
         }
         
         .discord-info {
-            flex: 1;
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 70px;
         }
         
-        .discord-info h3 {
-            font-size: 2.5rem;
+        .discord-info h1 {
+            font-size: 3rem;
             margin-bottom: 30px;
             color: var(--secondary-color);
-            font-family: 'Bebas Neue', sans-serif;
+            font-weight: 800;
             letter-spacing: 1px;
         }
         
@@ -554,45 +674,77 @@
             font-size: 1.2rem;
             line-height: 1.8;
             margin-bottom: 30px;
+            color: var(--text-muted);
         }
         
         .discord-servers {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 50px;
             justify-content: center;
+            width: 100%;
         }
         
         .discord-server {
             flex: 1;
             min-width: 300px;
+            max-width: 450px;
             background: var(--card-bg);
             border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(201, 178, 92, 0.3);
+            padding: 50px 40px;
+            box-shadow: var(--card-shadow);
+            border: var(--card-border);
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .discord-server::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(114, 137, 218, 0.1), transparent);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition-medium);
         }
         
         .discord-server:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(185, 167, 67, 0.3);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(114, 137, 218, 0.3);
+        }
+        
+        .discord-server:hover::before {
+            opacity: 1;
         }
         
         .discord-server img {
             width: 120px;
             height: auto;
             margin-bottom: 30px;
+            border-radius: 20px;
+            transition: all var(--transition-medium);
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+        
+        .discord-server:hover img {
+            transform: scale(1.1);
+            filter: drop-shadow(0 15px 30px rgba(114, 137, 218, 0.3));
         }
         
         .discord-server h4 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 20px;
             color: #7289da;
-            font-family: 'Bebas Neue', sans-serif;
+            font-weight: 700;
             letter-spacing: 1px;
         }
         
@@ -601,6 +753,7 @@
             margin-bottom: 30px;
             font-size: 1.1rem;
             line-height: 1.7;
+            color: var(--text-muted);
         }
         
         .join-discord-btn {
@@ -609,78 +762,104 @@
             background: linear-gradient(to right, #7289da, #5e78d5);
             color: white;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: 700;
-            transition: all 0.3s ease;
+            transition: all var(--transition-fast);
             border: none;
             cursor: pointer;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 20px rgba(114, 137, 218, 0.4);
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(114, 137, 218, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .join-discord-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-fast);
+            z-index: -1;
         }
         
         .join-discord-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(114, 137, 218, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(114, 137, 218, 0.5);
+        }
+        
+        .join-discord-btn:hover::before {
+            left: 100%;
         }
         
         .discord-role {
             margin-top: 20px;
-            padding: 10px 20px;
-            background: rgba(114, 137, 218, 0.2);
-            border-radius: 30px;
+            padding: 12px 25px;
+            background: rgba(114, 137, 218, 0.1);
+            border-radius: 50px;
             font-weight: 600;
-            color: #ddd;
-            border: 1px solid rgba(114, 137, 218, 0.4);
+            color: #a0a0a0;
+            border: 1px solid rgba(114, 137, 218, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition-fast);
+        }
+        
+        .discord-server:hover .discord-role {
+            background: rgba(114, 137, 218, 0.2);
+            color: #d0d0d0;
         }
         
         .discord-role i {
-            margin-right: 10px;
             color: #7289da;
+            font-size: 1.1rem;
         }
         
-        /* قسم الأعمال (محسن) */
+        /* Portfolio Section */
         #portfolio {
-            background-image: url('https://i.postimg.cc/xCXV6yF2/51-20250509184644.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            position: relative;
         }
         
         .portfolio-container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .projects {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            gap: 50px;
             margin-top: 50px;
         }
         
         .project-card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            transition: all 0.5s ease;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-medium);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(201, 178, 92, 0.2);
+            border: var(--card-border);
             height: 100%;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         
         .project-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(201, 178, 92, 0.3);
-            border-color: var(--secondary-color);
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(201, 178, 92, 0.2);
         }
         
         .project-image {
-            height: 220px;
-            background-size: cover;
-            background-position: center;
+            height: 240px;
             position: relative;
             overflow: hidden;
         }
@@ -692,7 +871,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(15, 15, 15, 0.8));
+            background: linear-gradient(to bottom, transparent 50%, rgba(15, 15, 15, 0.8));
+            z-index: 1;
+            transition: var(--transition-medium);
         }
         
         .project-image img {
@@ -700,76 +881,116 @@
             height: 100%;
             object-fit: cover;
             transition: transform 1.5s ease;
+            filter: brightness(0.9) contrast(1.1);
         }
         
         .project-card:hover .project-image img {
             transform: scale(1.1);
         }
         
+        .project-card:hover .project-image::before {
+            opacity: 0.7;
+        }
+        
         .project-info {
-            padding: 30px;
+            padding: 35px 30px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+            position: relative;
+            z-index: 2;
         }
         
-        .project-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+        .project-info h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: var(--secondary-color);
-            font-family: 'Bebas Neue', sans-serif;
+            font-weight: 700;
             letter-spacing: 1px;
+            transition: var(--transition-fast);
+        }
+        
+        .project-card:hover .project-info h1 {
+            transform: translateY(-5px);
         }
         
         .project-info p {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             line-height: 1.7;
             flex-grow: 1;
+            color: var(--text-muted);
+            font-size: 1.1rem;
         }
         
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .tech-tag {
-            padding: 5px 15px;
-            background: rgba(201, 178, 92, 0.2);
-            border-radius: 20px;
+            padding: 8px 18px;
+            background: rgba(201, 178, 92, 0.1);
+            border-radius: 50px;
             font-size: 0.9rem;
             color: var(--secondary-color);
-            border: 1px solid rgba(201, 178, 92, 0.3);
+            border: 1px solid rgba(201, 178, 92, 0.2);
+            transition: var(--transition-fast);
+        }
+        
+        .project-card:hover .tech-tag {
+            background: rgba(201, 178, 92, 0.2);
+            transform: translateY(-3px);
         }
         
         .visit-btn {
             display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-            color: var(--primary-bg);
+            padding: 14px 30px;
+            background: transparent;
+            color: var(--secondary-color);
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: 700;
-            transition: all 0.3s ease;
-            border: none;
+            transition: all var(--transition-fast);
             cursor: pointer;
             text-align: center;
             font-size: 1.1rem;
             margin-top: auto;
+            border: 2px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .visit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--secondary-color);
+            transition: var(--transition-fast);
+            z-index: -1;
         }
         
         .visit-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(201, 178, 92, 0.4);
+            color: var(--primary-bg);
         }
         
-        /* تذييل الصفحة */
+        .visit-btn:hover::before {
+            width: 100%;
+        }
+        
+        /* Footer */
         footer {
-            background: rgba(15, 15, 15, 1);
-            padding: 50px 10%;
+            background: rgba(15, 15, 15, 0.8);
+            padding: 80px 8%;
             text-align: center;
             position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
         }
         
         .footer-content {
@@ -778,13 +999,20 @@
         }
         
         .footer-logo {
-            height: 70px;
-            margin-bottom: 30px;
+            height: 80px;
+            margin-bottom: 40px;
+            transition: var(--transition-medium);
+            filter: drop-shadow(0 5px 15px rgba(201, 178, 92, 0.3));
+        }
+        
+        .footer-logo:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 10px 25px rgba(201, 178, 92, 0.5));
         }
         
         .footer-text {
-            color: #999;
-            margin-bottom: 30px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
             font-size: 1.1rem;
             line-height: 1.7;
         }
@@ -792,39 +1020,60 @@
         .footer-social {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 25px;
+            margin-bottom: 40px;
         }
         
         .footer-social a {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
             color: var(--secondary-color);
-            transition: all 0.3s ease;
+            transition: all var(--transition-fast);
             border: 1px solid rgba(201, 178, 92, 0.2);
+            background: rgba(201, 178, 92, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-social a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-color);
+            transition: var(--transition-fast);
+            transform: scale(0);
+            border-radius: 50%;
+            z-index: -1;
         }
         
         .footer-social a:hover {
-            transform: translateY(-5px);
-            background: var(--secondary-color);
             color: var(--primary-bg);
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+        
+        .footer-social a:hover::before {
+            transform: scale(1);
         }
         
         .copyright {
             color: #777;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         
-        /* تأثيرات الحركة المحسنة */
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -835,7 +1084,7 @@
         @keyframes fadeInRight {
             from {
                 opacity: 0;
-                transform: translateX(-50px);
+                transform: translateX(-30px);
             }
             to {
                 opacity: 1;
@@ -846,7 +1095,7 @@
         @keyframes fadeInLeft {
             from {
                 opacity: 0;
-                transform: translateX(50px);
+                transform: translateX(30px);
             }
             to {
                 opacity: 1;
@@ -854,26 +1103,14 @@
             }
         }
         
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-        
-        /* جسيمات متحركة في الخلفية محسنة */
+        /* Particles */
         .particles {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -5;
             overflow: hidden;
             pointer-events: none;
         }
@@ -882,7 +1119,7 @@
             position: absolute;
             background-color: var(--secondary-color);
             border-radius: 50%;
-            opacity: 0.3;
+            opacity: 0.2;
             animation: floatParticle linear infinite;
         }
         
@@ -895,12 +1132,12 @@
             }
         }
         
-        /* تأثيرات التمرير المحسنة */
+        /* Scroll Reveal */
         .reveal {
             position: relative;
             transform: translateY(50px);
             opacity: 0;
-            transition: all 1s ease;
+            transition: all 1s var(--transition-slow);
         }
         
         .reveal.active {
@@ -908,16 +1145,18 @@
             opacity: 1;
         }
         
-        /* زر العودة للأعلى */
+        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 30px;
             left: 30px;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-            color: var(--primary-bg);
+            background: rgba(25, 25, 25, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--secondary-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -925,9 +1164,9 @@
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all var(--transition-fast);
             z-index: 999;
-            box-shadow: 0 5px 15px rgba(201, 178, 92, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
         
         .back-to-top.active {
@@ -937,130 +1176,30 @@
         
         .back-to-top:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(201, 178, 92, 0.6);
+            box-shadow: 0 10px 30px rgba(201, 178, 92, 0.3);
+            background: var(--secondary-color);
+            color: var(--primary-bg);
         }
         
-        /* تحسينات للشاشات المختلفة */
-        @media (max-width: 1200px) {
-            .about-container {
-                gap: 40px;
-            }
-            
-            .hero-title {
-                font-size: 3.5rem;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .about-container {
-                flex-direction: column;
-            }
-            
-            .about-logo {
-                margin-bottom: 30px;
-            }
-            
-            .discord-content {
-                flex-direction: column;
-            }
-            
-            .discord-info {
-                margin-bottom: 40px;
-                text-align: center;
-            }
-            
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 5%;
-            }
-            
-            .nav-links {
-                gap: 15px;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .about-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .social-icons {
-                gap: 20px;
-            }
-            
-            .projects {
-                grid-template-columns: 1fr;
-            }
-            
-            section {
-                padding: 100px 5%;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .nav-links a {
-                font-size: 16px;
-                padding: 5px 8px;
-            }
-            
-            .about-content h1 {
-                font-size: 2rem;
-            }
-            
-            .discord-server {
-                padding: 20px;
-            }
-            
-            .social-card {
-                padding: 20px;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .hero-btn {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-        }
-        
-        /* تأثير الماوس المخصص */
+        /* Custom Cursor */
         .custom-cursor {
             position: fixed;
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: rgba(201, 178, 92, 0.5);
+            background: rgba(201, 178, 92, 0.3);
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, 
+            transition: width 0.3s, height 0.3s, background 0.3s;
+            backdrop-filter: blur(2px);
+            mix-blend-mode: lighten;
         }
         
         .custom-cursor.active {
             width: 50px;
             height: 50px;
-            background: rgba(201, 178, 92, 0.2);
+            background: rgba(201, 178, 92, 0.15);
         }
         
         .cursor-dot {
@@ -1072,24 +1211,139 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
+            transition: transform 0.1s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .about-container {
+                gap: 60px;
+            }
+            
+            section {
+                padding: 100px 6%;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .logo-container {
+                margin-bottom: 50px;
+                max-width: 300px;
+            }
+            
+            .section-title {
+                font-size: 3rem;
+            }
+            
+            .about-content h1 {
+                font-size: 3.5rem;
+                text-align: center;
+            }
+            
+            .about-content p {
+                text-align: center;
+            }
+            
+            .discord-server {
+                min-width: 280px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-content h1 {
+                font-size: 3rem;
+            }
+            
+            .projects {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 80px 5%;
+            }
+            
+            .menu-toggle {
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .back-to-top {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .social-card h3,
+            .project-info h1 {
+                font-size: 1.8rem;
+            }
+            
+            .discord-server h4 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .about-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .social-description p {
+                font-size: 1.2rem;
+            }
+            
+            .discord-server,
+            .social-card {
+                padding: 30px 25px;
+            }
+            
+            .project-info {
+                padding: 25px 20px;
+            }
+            
+            .footer-social a {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .mobile-menu {
+                width: 280px;
+                padding: 100px 30px 30px;
+            }
+            
+            .projects {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- صفحة البداية -->
-    <div class="hero-section">
-    <div class="hero-bg" style="background-image: url('https://cdn.discordapp.com/attachments/1276639014522196175/1370795760169386044/51_20250510164133.png?ex=6820cc89&is=681f7b09&hm=e796d0a014d234528cb13d7fe3172d56bfaf6de7fd432de90943caffa30db369&')"></div>
-    <div class="hero-overlay" style="background: rgba(0, 0, 0, 0.3)"></div>
-    </div>
+    <!-- Main Background -->
+    <div class="main-background" style="background: url('https://i.postimg.cc/xCXV6yF2/51-20250509184644.png')"></div>
     
-    <!-- جسيمات متحركة -->
+    <!-- Particles -->
     <div class="particles" id="particles"></div>
     
-    <!-- مؤشر الماوس المخصص -->
+    <!-- Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
     
-   <!-- زر القائمة فقط -->
+    <!-- Navigation -->
     <div class="menu-toggle" id="navbar">
         <div class="hamburger">
             <span></span>
@@ -1098,233 +1352,231 @@
         </div>
     </div>
 
-    <!-- القائمة المنزلقة -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#about">عنّي</a>
-        <a href="#social">حساباتي</a>
-        <a href="#discord">ديسكورد</a>
-        <a href="#portfolio">أعمالي</a>
+        <a href="#about" class="arabic-text">عنّي</a>
+        <a href="#social" class="arabic-text">حساباتي</a>
+        <a href="#discord" class="arabic-text">ديسكورد</a>
+        <a href="#portfolio" class="arabic-text">أعمالي</a>
     </div>
         
-    <!-- قسم التعريف -->
+    <!-- About Section - New Hero -->
     <section id="about">
         <div class="about-container">
-            <div class="about-logo reveal">
-                <img src="https://i.postimg.cc/2SnFSzKb/46-20250508215744.png" alt="شعار صابر">
+            <div class="logo-container reveal">
+                <div class="logo-wrapper">
+                    <img src="https://i.postimg.cc/2SnFSzKb/46-20250508215744.png" alt="شعار صابر" class="logo-image">
+                    <div class="logo-glow"></div>
+                    <div class="logo-shine"></div>
+                </div>
             </div>
             <div class="about-content">
-                <h1 class="reveal">اهلا</h1>
-                <p class="reveal">أنا صابر (ويُعرفني البعض باسم علي)، مصمم جرافيك محترف ومبرمج مواقع متخصص بخبرة واسعة في مجالات التصميم الرقمي وتطوير الواجهات. أشغف بخلق تجارب مستخدم مميزة وتصاميم جذابة تلبي احتياجات العملاء وتتجاوز توقعاتهم.</p>
-                <p class="reveal">أؤمن بأن التعلّم المستمر هو أساس التطور، وأسعى دومًا لاكتساب مهارات جديدة ومتابعة أحدث التقنيات والاتجاهات في عالم التصميم والبرمجة. شغفي الحقيقي يكمن في تحويل الأفكار المعقدة إلى تصاميم بسيطة وسهلة الاستخدام مع الحفاظ على الجمالية والوظيفة.</p>
-                <p class="reveal">هدفي من التواجد هنا هو تقديم الفائدة لمن يحتاجها، والاستفادة من خبرات المجتمع، وبناء علاقات مهنية قائمة على الاحترام والدعم المتبادل. أُحب خوض التحديات، والعمل على مشاريع تُضيف قيمة حقيقية، سواء على مستوى التصميم أو البرمجة.</p>
+                <h1 class="reveal arabic-text">اهلا</h1>
+                <p class="reveal arabic-text">أنا صابر (ويُعرفني البعض باسم علي)، مصمم جرافيك محترف ومبرمج مواقع متخصص بخبرة واسعة في مجالات التصميم الرقمي وتطوير الواجهات. أشغف بخلق تجارب مستخدم مميزة وتصاميم جذابة تلبي احتياجات العملاء وتتجاوز توقعاتهم.</p>
+                <p class="reveal arabic-text">أؤمن بأن التعلّم المستمر هو أساس التطور، وأسعى دومًا لاكتساب مهارات جديدة ومتابعة أحدث التقنيات والاتجاهات في عالم التصميم والبرمجة. شغفي الحقيقي يكمن في تحويل الأفكار المعقدة إلى تصاميم بسيطة وسهلة الاستخدام مع الحفاظ على الجمالية والوظيفة.</p>
+                <p class="reveal arabic-text">هدفي من التواجد هنا هو تقديم الفائدة لمن يحتاجها، والاستفادة من خبرات المجتمع، وبناء علاقات مهنية قائمة على الاحترام والدعم المتبادل. أُحب خوض التحديات، والعمل على مشاريع تُضيف قيمة حقيقية، سواء على مستوى التصميم أو البرمجة.</p>
+                <a href="#social" class="about-cta reveal arabic-text">تعرف على حساباتي</a>
             </div>
         </div>
     </section>
     
-    <!-- قسم الحسابات -->
+    <!-- Social Section -->
     <section id="social">
-        <h2 class="section-title reveal">My Accounts</h2>
+        <h2 class="section-title reveal english-text">My Accounts</h2>
         <div class="social-container">
             <div class="social-description reveal">
-                <p>وادا منت مشترك؟ اااااااااااااااااااااااشترك</p>
+                <p class="arabic-text">وادا منت مشترك؟ اااااااااااااااااااااااشترك</p>
             </div>
             <div class="social-grid">
-                <!-- حساب Kick -->
+                <!-- Kick Account -->
                 <div class="social-card reveal">
                     <div class="social-icon-large">
                         <i class="fab fa-kickstarter"></i>
                     </div>
-                    <h3>Kick</h3>
-                    <p>حسابي على كيك ستريمر مستقبلي يعني ان شاء الله ما عليك ستريمر ترا يب تابعني.</p>
-                    <a href="https://kick.com/sabr1m" class="follow-btn">تابعني</a>
+                    <h3 class="english-text">Kick</h3>
+                    <p class="arabic-text">حسابي على كيك ستريمر مستقبلي يعني ان شاء الله ما عليك ستريمر ترا يب تابعني.</p>
+                    <a href="https://kick.com/sabr1m" class="follow-btn arabic-text">تابعني</a>
                 </div>
                 
-                <!-- حساب Twitter -->
+                <!-- Twitter Account -->
                 <div class="social-card reveal">
                     <div class="social-icon-large">
                         <i class="fab fa-twitter"></i>
                     </div>
-                    <h3>Twitter</h3>
-                    <p>حسابي على تويتر فولو ي وحش.</p>
-                    <a href="https://x.com/Sabr1m" class="follow-btn">فولو</a>
+                    <h3 class="english-text">Twitter</h3>
+                    <p class="arabic-text">حسابي على تويتر فولو ي وحش.</p>
+                    <a href="https://x.com/Sabr1m" class="follow-btn arabic-text">فولو</a>
                 </div>
                 
-                <!-- حساب YouTube -->
+                <!-- YouTube Account -->
                 <div class="social-card reveal">
                     <div class="social-icon-large">
                         <i class="fab fa-youtube"></i>
                     </div>
-                    <h3>YouTube</h3>
-                    <p>يويتيوبر مستبقلي . واشترررررررررررررررررررررررك ي وحش</p>
-                    <a href="https://www.youtube.com/@SabrRT" class="follow-btn">اشترك</a>
+                    <h3 class="english-text">YouTube</h3>
+                    <p class="arabic-text">يويتيوبر مستبقلي . واشترررررررررررررررررررررررك ي وحش</p>
+                    <a href="https://www.youtube.com/@SabrRT" class="follow-btn arabic-text">اشترك</a>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- قسم Discord -->
+    <!-- Discord Section -->
     <section id="discord">
-        <h2 class="section-title reveal">Discord</h2>
+        <h2 class="section-title reveal english-text">Discord</h2>
         <div class="discord-container">
             <div class="discord-info reveal">
-                <h1>سيرفرات ديسكورد التي أديرها</h1>
-                <p>أنا مسؤول عن عدة سيرفرات على ديسكورد، حيث أقدم محتوى متنوعًا وأدير مجتمعات نشطة. يمكنك الانضمام إلى هذه السيرفرات للتواصل معي ومع الأعضاء الآخرين.</p>
+                <h1 class="arabic-text">سيرفرات ديسكورد التي أديرها</h1>
+                <p class="arabic-text">أنا مسؤول عن عدة سيرفرات على ديسكورد، حيث أقدم محتوى متنوعًا وأدير مجتمعات نشطة. يمكنك الانضمام إلى هذه السيرفرات للتواصل معي ومع الأعضاء الآخرين.</p>
             </div>
             <div class="discord-servers">
-                <!-- سيرفر 1 -->
+                <!-- Server 1 -->
                 <div class="discord-server reveal">
                     <img src="https://i.postimg.cc/P5TJQNKK/20250511-015412.png" alt="شعار السيرفر 1">
-                    <h4>iMonkey</h4>
-                    <p>ٍStreamer in Kick,  Youtuber +100k, Respect Player </p>
+                    <h4 class="english-text">iMonkey</h4>
+                    <p class="english-text">Streamer in Kick, Youtuber +100k, Respect Player</p>
                     <div class="discord-role">
-                        <i class="fas fa-crown"></i> Cheif Manager 
+                        <i class="fas fa-crown"></i> <span class="english-text">Chief Manager</span>
                     </div>
-                    <a href="https://discord.gg/sEygeV9ejX" class="join-discord-btn">انضم الآن</a>
+                    <a href="https://discord.gg/sEygeV9ejX" class="join-discord-btn arabic-text">انضم الآن</a>
                 </div>
                 
-                <!-- سيرفر 2 -->
+                <!-- Server 2 -->
                 <div class="discord-server reveal">
                     <img src="https://i.postimg.cc/pTwXhdpf/20250511-015210.png" alt="شعار السيرفر 2">
-                    <h4>Id7o</h4>
-                    <p>ٍStreamer in Kick,  Youtuber +100k, Respect Player </p>
+                    <h4 class="english-text">Id7o</h4>
+                    <p class="english-text">Streamer in Kick, Youtuber +100k, Respect Player</p>
                     <div class="discord-role">
-                        <i class="fas fa-crown"></i> Server Manager 
+                        <i class="fas fa-crown"></i> <span class="english-text">Server Manager</span>
                     </div>
-                    <a href="https://discord.gg/VGHzKEeExv" class="join-discord-btn">انضم الآن</a>
+                    <a href="https://discord.gg/VGHzKEeExv" class="join-discord-btn arabic-text">انضم الآن</a>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- قسم الأعمال -->
+    <!-- Portfolio Section -->
     <section id="portfolio">
-        <h2 class="section-title reveal">My Work</h2>
+        <h2 class="section-title reveal english-text">My Work</h2>
         <div class="portfolio-container">
             <div class="projects">
-                <!-- مشروع 1 -->
+                <!-- Project 1 -->
                 <div class="project-card reveal">
                     <div class="project-image">
                         <img src="https://i.postimg.cc/xCXV6yF2/51-20250509184644.png" alt="موقع للعبة">
                     </div>
                     <div class="project-info">
-                        <h1>موقع للعبة</h1>
-                        <p>موقع للعبه تحت اسم تحدي صور تتكون من 15 تحدي! تم تطويره باستخدام تقنيات حديثة لتقديم تجربة مستخدم مميزة.</p>
+                        <h1 class="arabic-text">موقع للعبة</h1>
+                        <p class="arabic-text">موقع للعبه تحت اسم تحدي صور تتكون من 15 تحدي! تم تطويره باستخدام تقنيات حديثة لتقديم تجربة مستخدم مميزة.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">HTML</span>
                             <span class="tech-tag">CSS</span>
                             <span class="tech-tag">Svelt</span>
                         </div>
-                        <a href="https://fafagame.vercel.app/" class="visit-btn">عرض العمل</a>
+                        <a href="https://fafagame.vercel.app/" class="visit-btn arabic-text">عرض العمل</a>
                     </div>
                 </div>
                 
-                <!-- مشروع 2 -->
+                <!-- Project 2 -->
                 <div class="project-card reveal">
                     <div class="project-image">
                         <img src="https://i.postimg.cc/xCXV6yF2/51-20250509184644.png" alt="موقع بوت">
                     </div>
                     <div class="project-info">
-                        <h1>موقع بوت</h1>
-                        <p>موقع ل بوت "بوت الاقتراحات" على ديسكورد، يمكن المستخدمين من تقديم اقتراحات وإدارتها بسهولة.</p>
+                        <h1 class="arabic-text">موقع بوت</h1>
+                        <p class="arabic-text">موقع ل بوت "بوت الاقتراحات" على ديسكورد، يمكن المستخدمين من تقديم اقتراحات وإدارتها بسهولة.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">HTML</span>
                             <span class="tech-tag">CSS</span>
                         </div>
-                        <a href="https://suggestions-discord.vercel.app/" class="visit-btn">عرض العمل</a>
+                        <a href="https://suggestions-discord.vercel.app/" class="visit-btn arabic-text">عرض العمل</a>
                     </div>
                 </div>
                 
-                <!-- مشروع 3 -->
+                <!-- Project 3 -->
                 <div class="project-card reveal">
                     <div class="project-image">
                         <img src="https://i.postimg.cc/xCXV6yF2/51-20250509184644.png" alt="تصميم شعار">
                     </div>
                     <div class="project-info">
-                        <h1>بوابة المبدعين</h1>
-                        <p>تصميم موقع احترافي لمجتمع مصممين</p>
+                        <h1 class="arabic-text">بوابة المبدعين</h1>
+                        <p class="arabic-text">تصميم موقع احترافي لمجتمع مصممين</p>
                         <div class="tech-tags">
                             <span class="tech-tag">HTML</span>
                             <span class="tech-tag">CSS</span>
                         </div>
-                        <a href="https://creatives-portal.vercel.app/" class="visit-btn">عرض العمل</a>
+                        <a href="https://creatives-portal.vercel.app/" class="visit-btn arabic-text">عرض العمل</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- تذييل الصفحة -->
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <img src="https://i.postimg.cc/jjmMD8hC/20250511-140455.png" alt="شعار صابر" class="footer-logo">
-            <p class="footer-text">كل الحقوق محفوظة &copy; 2025 صابر | مصمم جرافيك ومطور ويب</p>
+            <p class="footer-text arabic-text">كل الحقوق محفوظة &copy; 2025 صابر | مصمم جرافيك ومطور ويب</p>
             <div class="footer-social">
                 <a href="https://kick.com/sabr1m"><i class="fab fa-kickstarter"></i></a>
                 <a href="https://x.com/Sabr1m"><i class="fab fa-twitter"></i></a>
                 <a href="https://www.youtube.com/@SabrRT"><i class="fab fa-youtube"></i></a>
             </div>
-            <p class="copyright">صمم بكل ❤️ بواسطة صابر</p>
+            <p class="copyright arabic-text">صمم بكل ❤️ بواسطة صابر</p>
         </div>
     </footer>
     
-    <!-- زر العودة للأعلى -->
+    <!-- Back to Top Button -->
     <div class="back-to-top" id="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </div>
     
     <script>
-        // إنشاء الجسيمات المتحركة
+        // Create particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
+            const particleCount = 25;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                // أحجام عشوائية
-                const size = Math.random() * 10 + 5;
+                // Random sizes
+                const size = Math.random() * 8 + 3;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
-                // مواقع عشوائية
+                // Random positions
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
                 
-                // مدة حركة عشوائية
-                const duration = Math.random() * 20 + 10;
+                // Random animation duration
+                const duration = Math.random() * 25 + 15;
                 particle.style.animationDuration = `${duration}s`;
                 
                 particlesContainer.appendChild(particle);
             }
         }
         
-        // تأثير التمرير لشريط التنقل
+        // Scroll effect for navigation
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             const backToTop = document.getElementById('back-to-top');
             
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            if (window.scrollY > 300) {
+            if (window.scrollY > 100) {
                 backToTop.classList.add('active');
             } else {
                 backToTop.classList.remove('active');
             }
         });
         
-        // تأثير ظهور العناصر عند التمرير
+        // Scroll reveal effect
         function revealOnScroll() {
             const reveals = document.querySelectorAll('.reveal');
             
             reveals.forEach(reveal => {
                 const windowHeight = window.innerHeight;
                 const revealTop = reveal.getBoundingClientRect().top;
-                const revealPoint = 100;
+                const revealPoint = 150;
                 
                 if (revealTop < windowHeight - revealPoint) {
                     reveal.classList.add('active');
@@ -1332,18 +1584,20 @@
             });
         }
         
-        // مؤشر الماوس المخصص
+        // Custom cursor
         const cursor = document.getElementById('custom-cursor');
         const cursorDot = document.getElementById('cursor-dot');
         
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
+            
+            // Add a slight delay to the dot for a trailing effect
+            setTimeout(() => {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            }, 50);
         });
-
-        
         
         document.querySelectorAll('a, button, .social-card, .project-card, .discord-server').forEach(element => {
             element.addEventListener('mouseenter', () => {
@@ -1355,7 +1609,7 @@
             });
         });
         
-        // العودة للأعلى
+        // Back to top button
         document.getElementById('back-to-top').addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -1363,15 +1617,22 @@
             });
         });
         
-        // تهيئة الصفحة
+        // Initialize page
         window.addEventListener('load', function() {
             createParticles();
             revealOnScroll();
+            
+            // Add active class to first elements for immediate visibility
+            document.querySelectorAll('.logo-container, .about-content h1, .about-content p').forEach(el => {
+                setTimeout(() => {
+                    el.classList.add('active');
+                }, 300);
+            });
         });
         
         window.addEventListener('scroll', revealOnScroll);
         
-        // التمرير السلس
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1380,46 +1641,46 @@
                 });
             });
         });
-    </script>
-    <script>
-        // وظيفة فتح/إغلاق القائمة
+        
+        // Mobile menu toggle
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             const menu = document.getElementById('mobileMenu');
-            const spans = this.querySelectorAll('.hamburger span');
+            const hamburger = document.querySelector('.hamburger');
             
-            // تبديل حالة القائمة
             menu.classList.toggle('active');
-            
-            // تحويل الشرطات إلى علامة X
-            spans[0].style.transform = menu.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'rotate(0) translate(0)';
-            spans[1].style.opacity = menu.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = menu.classList.contains('active') ? 'rotate(-45deg) translate(7px, -8px)' : 'rotate(0) translate(0)';
+            hamburger.classList.toggle('active');
         });
 
-        // إغلاق القائمة عند النقر على أي رابط
+        // Close menu when clicking on links
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', function() {
                 document.getElementById('mobileMenu').classList.remove('active');
-                document.querySelectorAll('.hamburger span').forEach((span, index) => {
-                    if(index === 0) span.style.transform = 'rotate(0) translate(0)';
-                    if(index === 1) span.style.opacity = '1';
-                    if(index === 2) span.style.transform = 'rotate(0) translate(0)';
-                });
+                document.querySelector('.hamburger').classList.remove('active');
             });
         });
         
-                document.addEventListener('DOMContentLoaded', function() {
+        // Add language classes to elements
+        document.addEventListener('DOMContentLoaded', function() {
             const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, a');
             
             elements.forEach(el => {
-                // تحقق إذا كان النص يحتوي على حروف عربية
-                if (/[\u0600-\u06FF]/.test(el.textContent)) {
+                // Check if text contains Arabic characters
+                if (/[\u0600-\u06FF]/.test(el.textContent) && !el.classList.contains('arabic-text')) {
                     el.classList.add('arabic-text');
-                } else {
+                } else if (!el.classList.contains('english-text') && !/[\u0600-\u06FF]/.test(el.textContent)) {
                     el.classList.add('english-text');
                 }
             });
         });
-        </script>
+
+          // أضف هذا السكريبت لتحميل الصورة بشكل صحيح
+        window.addEventListener('load', function() {
+            const bg = new Image();
+               bg.src = 'https://i.postimg.cc/xCXV6yF2/51-20250509184644.png';
+                bg.onload = function() {
+        document.querySelector('.main-background').style.backgroundImage = `url(${bg.src})`;
+    };
+});
+    </script>
 </body>
 </html>
